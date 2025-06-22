@@ -1,0 +1,133 @@
+{
+    "playlist": [
+        {
+            "name": "兰若度母 - 福禄寿FloruitShow",
+            "order": 0,
+            "format": "mp3"
+        },
+        {
+            "name": "东流 - 绯村柯北 灰老板",
+            "order": 1,
+            "format": "mp3"
+        },
+        {
+            "name": "枕边童话 - 小田音乐社 傲七爷",
+            "order": 2,
+            "format": "mp3"
+        },
+        {
+            "name": "晴天 - 周杰伦",
+            "order": 3,
+            "format": "mp3"
+        },
+        {
+            "name": "等你下课(with 杨瑞代) - 周杰伦",
+            "order": 4,
+            "format": "mp3"
+        },
+        {
+            "name": "愿我（《狐妖小红娘》南国篇插曲） - 忆嘟嘟",
+            "order": 5,
+            "format": "mp3"
+        },
+        {
+            "name": "爱人错过 - 告五人",
+            "order": 6,
+            "format": "mp3"
+        },
+        {
+            "name": "若当来世 - 冥月 Mario",
+            "order": 7,
+            "format": "mp3"
+        },
+        {
+            "name": "一路向北 (电影《头文字Ｄ》插曲) - 周杰伦",
+            "order": 8,
+            "format": "mp3"
+        },
+        {
+            "name": "爱YOU READY , 爱我READY (OP剪辑版) - 旅行团乐队- 孔阳",
+            "order": 9,
+            "format": "mp3"
+        },
+        {
+            "name": "铃舟 - 匀子",
+            "order": 10,
+            "format": "mp3"
+        },
+        {
+            "name": "星晴 - 周杰伦",
+            "order": 11,
+            "format": "mp3"
+        },
+        {
+            "name": "像暗杀似的绕到背后突然拥抱你 - 太一",
+            "order": 12,
+            "format": "mp3"
+        },
+        {
+            "name": "乌梅子酱 - 李荣浩",
+            "order": 13,
+            "format": "mp3"
+        },
+        {
+            "name": "慢慢喜欢你 - 莫文蔚",
+            "order": 14,
+            "format": "mp3"
+        },
+        {
+            "name": "无涯（TV size） - 醉雪",
+            "order": 15,
+            "format": "mp3"
+        },
+        {
+            "name": "突然好想你 - 五月天",
+            "order": 16,
+            "format": "mp3"
+        },
+        {
+            "name": "下沙 - 游鸿明",
+            "order": 17,
+            "format": "mp3"
+        },
+        {
+            "name": "我的美丽feat.海洋Bo - 海洋Bo 高睿",
+            "order": 18,
+            "format": "mp3"
+        },
+        {
+            "name": "七里香 - 周杰伦",
+            "order": 19,
+            "format": "mp3"
+        },
+        {
+            "name": "梦回还 (TV size) - 呦猫UNEKO",
+            "order": 20,
+            "format": "mp3"
+        },
+        {
+            "name": "唯一 - 王力宏",
+            "order": 21,
+            "format": "mp3"
+        },
+        {
+            "name": "沈园外 - 阿YueYue 戾格 小田音乐社",
+            "order": 22,
+            "format": "mp3"
+        },
+        {
+            "name": "枫 - 周杰伦",
+            "order": 23,
+            "format": "mp3"
+        },
+        {
+            "name": "屋顶 - 周杰伦 温岚",
+            "order": 24,
+            "format": "mp3"
+        }
+    ],
+    "current_index": 2,
+    "is_playing": false,
+    "current_position": 15.631677,
+    "last_update_time": "2025-06-23T03:06:37.841493"
+}
