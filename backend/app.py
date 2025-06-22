@@ -274,7 +274,7 @@ def play_song(index):
             token = token[7:]
             
         return jsonify({
-            "url": f"https://myselfservice.gcsyweb.cn/api/music/storage/{playlist[index]['name']}.{playlist[index]['format']}?token={token}",
+            "url": f"http://localhost:8080/api/music/storage/{playlist[index]['name']}.{playlist[index]['format']}?token={token}",
             "message": "播放成功"
         })
     return jsonify({'error': 'Invalid song index'}), 400

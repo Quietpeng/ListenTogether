@@ -2,8 +2,8 @@
 // 统一配置所有服务器地址
 
 const CONFIG = {
-  API_BASE_URL: 'https://myselfservice.gcsyweb.cn/api',
-  SOCKET_URL: 'https://myselfservice.gcsyweb.cn'
+  API_BASE_URL: 'http://localhost:8080/api',
+  SOCKET_URL: 'http://localhost:8080'
 }
 
 console.log('🔧 使用直接配置:', CONFIG)
