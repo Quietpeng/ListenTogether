@@ -2,10 +2,16 @@
   "name": "music-together-frontend",
   "version": "1.0.0",
   "private": true,
+  "main": "electron/main.js",
+  "homepage": "./",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"npm run serve\" \"wait-on http://localhost:8080 && electron .\"",
+    "electron-pack": "npm run build && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
@@ -24,6 +30,10 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-standard": "^8.0.1",
+    "concurrently": "^7.6.0",
+    "electron": "^22.0.0",
+    "electron-builder": "^24.0.0",
+    "wait-on": "^7.0.1",
     "eslint": "^8.49.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
@@ -35,5 +45,30 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "build": {
+    "appId": "com.quietpeng.music-together",
+    "productName": "音乐一起听",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.music"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    },
+    "android": {
+      "target": "apk"
+    }
+  }
 }

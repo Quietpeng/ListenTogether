@@ -9,6 +9,9 @@ import { checkHostAvailability, showConnectionStatus } from './utils/health'
 // 临时修复：手动设置环境变量
 import './utils/env-fix'
 
+// 导入后台播放管理器
+import './utils/backgroundPlay'
+
 // 环境变量调试信息
 console.log('=== 环境变量调试信息 ===')
 console.log('NODE_ENV:', process.env.NODE_ENV)

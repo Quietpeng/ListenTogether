@@ -3,14 +3,25 @@
     <!-- 头部 -->
     <el-header class="header">
       <div class="header-content">
-        <h2>音乐一起听</h2>
-        <div class="header-actions">
+        <h2>音乐一起听</h2>        <div class="header-actions">
           <el-badge :value="connectedClients" class="badge">
             <el-button type="info" size="small">
               <el-icon><User /></el-icon>
               在线用户
             </el-button>
-          </el-badge>
+          </el-badge>          <!-- 后台播放状态指示器 -->
+          <el-button 
+            :type="backgroundPlayStatus.isActive ? 'success' : 'warning'" 
+            size="small" 
+            @click="toggleBackgroundPlay"
+            :title="backgroundPlayStatus.isActive ? '后台播放已启用' : '启用后台播放'"
+          >
+            <el-icon>
+              <VideoPlay v-if="backgroundPlayStatus.isActive" />
+              <VideoPause v-else />
+            </el-icon>
+            {{ backgroundPlayStatus.isActive ? '后台播放' : '启用后台' }}
+          </el-button>
           <el-button type="danger" size="small" @click="logout">
             <el-icon><SwitchButton /></el-icon>
             退出登录
@@ -154,6 +165,7 @@ import {
 import api from '../utils/api'
 import socketService from '../utils/socket'
 import { API_BASE_URL } from '../utils/env-fix'
+import backgroundPlayManager from '../utils/backgroundPlay'
 
 const router = useRouter()
 const audioPlayer = ref(null)
@@ -171,6 +183,15 @@ const duration = ref(0)
 const connectedClients = ref(1)
 const connectionStatus = ref('连接中...')
 const syncLock = ref(false)
+
+// 后台播放状态
+const backgroundPlayStatus = ref({
+  isActive: false,
+  hasWakeLock: false,
+  audioContextState: 'none',
+  networkKeepAlive: false,
+  heartbeat: false
+})
 
 // 计算属性
 const playlist = computed(() => state.playlist || [])
@@ -325,10 +346,45 @@ const onSeek = (value) => {
     socketService.emit('sync_position', {
       position: value
     })
-  }
-  setTimeout(() => {
+  }  setTimeout(() => {
     syncLock.value = false
   }, 1000)
+}
+
+// 后台播放控制
+const toggleBackgroundPlay = async () => {
+  try {
+    if (backgroundPlayStatus.value.isActive) {
+      await backgroundPlayManager.disableBackgroundPlay()
+      ElMessage.success('后台播放已禁用')
+    } else {
+      await backgroundPlayManager.enableBackgroundPlay()
+      ElMessage.success('后台播放已启用，现在可以安全地最小化应用或锁屏')
+    }
+    updateBackgroundPlayStatus()
+  } catch (error) {
+    console.error('切换后台播放模式失败:', error)
+    ElMessage.error('切换后台播放模式失败')
+  }
+}
+
+// 更新后台播放状态
+const updateBackgroundPlayStatus = () => {
+  const status = backgroundPlayManager.getStatus()
+  backgroundPlayStatus.value = { ...status }
+}
+
+// 自动启用后台播放（当开始播放时）
+const autoEnableBackgroundPlay = async () => {
+  if (!backgroundPlayStatus.value.isActive && isPlaying.value) {
+    try {
+      await backgroundPlayManager.enableBackgroundPlay()
+      updateBackgroundPlayStatus()
+      console.log('✅ 自动启用后台播放模式')
+    } catch (error) {
+      console.warn('⚠️ 自动启用后台播放失败:', error)
+    }
+  }
 }
 
 // 播放控制
@@ -349,6 +405,9 @@ const togglePlay = async () => {
           }
         }, 100)
       }
+      
+      // 开始播放时自动启用后台播放
+      autoEnableBackgroundPlay()
     }
   } catch (error) {
     console.error('播放控制失败:', error)
@@ -511,10 +570,25 @@ const logout = async () => {
 onMounted(() => {
   loadPlaylist()
   setupWebSocket()
+  
+  // 初始化后台播放状态
+  updateBackgroundPlayStatus()
+  
+  // 定期更新后台播放状态
+  setInterval(updateBackgroundPlayStatus, 5000)
+  
+  // 设置全局 API 引用
+  window.API_BASE_URL = API_BASE_URL
+  window.socketService = socketService
 })
 
 onUnmounted(() => {
   socketService.disconnect()
+  
+  // 清理后台播放
+  if (backgroundPlayStatus.value.isActive) {
+    backgroundPlayManager.disableBackgroundPlay()
+  }
 })
 
 // 监听当前歌曲变化
