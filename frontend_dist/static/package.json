@@ -1,0 +1,39 @@
+{
+  "name": "io.quietpeng.musictogether",
+  "displayName": "音乐一起听",
+  "version": "2.2.0",
+  "description": "多终端同步音乐播放应用",
+  "main": "index.js",
+  "author": "QuietPeng",
+  "icon": "icon",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-media": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-inappbrowser": {}
+    }
+  },
+  "devDependencies": {
+    "cordova-android": "^14.0.1",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-inappbrowser": "^4.0.0",
+    "cordova-plugin-media": "^5.0.3",
+    "cordova-plugin-network-information": "^2.0.1",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-statusbar": "^2.4.2"
+  }
+}

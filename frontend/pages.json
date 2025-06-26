@@ -1,0 +1,38 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/userLogin/userLogin",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/serverConfig/serverConfig",
+      "style": {
+        "navigationBarTitleText": "服务器配置",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/musicPlayer/musicPlayer",
+      "style": {
+        "navigationBarTitleText": "音乐播放器",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "音乐一起听",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "uniIdRouter": {}
+}
